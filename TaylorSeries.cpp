@@ -28,14 +28,16 @@ ld sine(ld x, size_t precision)
 {
     ld ans = 0;
     int sign = -1;
+    int den = idx = 1;
     ld p = x*x;
-
-    for(int i=0; i <= presicion; ++i)
+   
+    for(int i=1; i <= presicion; ++i)
     {
         sign *= -1;
 
-        ans += sign * x / fact(2*i+1);
+        ans += sign * x / den;
 
+	den *= ++idx * ++idx;
         x *= p;
     }
     return ans;
@@ -45,14 +47,16 @@ ld cosine(ld x, size_t precision)
 {
     ld ans = 0;
     int sign = 1;
+    int den = 1, idx = 0;
     ld p = x*x;
     x *= x;
     for(int i=1; i<=presicion; ++i)
     {
         sign *= -1;
 
-        ans += sign * x / fact(2*i);
+        ans += sign * x / den;
 
+	den *= ++idx * ++idx;
         x *= p;
     }
 
